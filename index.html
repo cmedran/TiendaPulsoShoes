@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Tienda online">
-
-    <title>Mi Tienda</title>
+    <title>Tienda</title>
 
     <link rel="stylesheet" href="styles.css">
 
     <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <!-- Configuración -->
+    <script src="config.js"></script>
+
+    <!-- Aplicación -->
+    <script src="app.js" defer></script>
 </head>
 
 <body>
 
-<!-- =====================================================
+<!-- ==========================================================
      HEADER
-===================================================== -->
+========================================================== -->
 
-<header class="header">
+<header class="site-header">
 
-    <div class="container header-content">
+    <div class="header-container">
 
-        <a href="#inicio" class="logo">
-            <span>MI</span> TIENDA
+        <a href="index.html" class="brand">
+            <img
+                src="img/logo.png"
+                alt="Logo"
+                class="brand-logo"
+                onerror="this.style.display='none'"
+            >
+
+            <span class="brand-name">TU TIENDA</span>
         </a>
 
-        <nav class="nav">
-
+        <nav class="main-nav">
             <a href="#inicio">Inicio</a>
-
-            <a href="#nosotros">Nosotros</a>
-
             <a href="#catalogo">Catálogo</a>
-
-            <a href="#carrito">
-                Carrito
-                <span id="cart-count">0</span>
-            </a>
-
+            <a href="#nosotros">Nosotros</a>
         </nav>
 
         <button
-            id="menu-toggle"
-            class="menu-toggle">
-            ☰
+            class="cart-button"
+            id="openCartBtn"
+            type="button"
+        >
+            <span class="cart-icon">🛒</span>
+            <span>Carrito</span>
+            <span
+                class="cart-counter"
+                id="cartCounter"
+            >0</span>
         </button>
 
     </div>
@@ -59,34 +63,159 @@
 </header>
 
 
-<!-- =====================================================
+<!-- ==========================================================
      HERO
-===================================================== -->
+========================================================== -->
 
-<section id="inicio" class="hero">
+<section
+    class="hero"
+    id="inicio"
+>
 
-    <div class="container hero-content">
+    <div class="hero-content">
 
-        <div class="hero-text">
+        <span class="hero-tag">
+            NUEVA COLECCIÓN
+        </span>
 
-            <span class="hero-label">
-                NUEVA COLECCIÓN
+        <h1>
+            Encontrá tu próximo
+            <strong>favorito.</strong>
+        </h1>
+
+        <p>
+            Descubrí nuestros productos y realizá tu pedido
+            directamente por WhatsApp.
+        </p>
+
+        <a
+            href="#catalogo"
+            class="btn btn-primary"
+        >
+            Ver catálogo
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================
+     CATÁLOGO
+========================================================== -->
+
+<main>
+
+<section
+    class="catalog-section"
+    id="catalogo"
+>
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-kicker">
+                PRODUCTOS
             </span>
 
-            <h1>
-                Encontrá tu próximo
-                <strong>favorito.</strong>
-            </h1>
+            <h2>
+                Nuestro catálogo
+            </h2>
 
             <p>
-                Descubrí nuestra colección y elegí
-                el modelo que mejor se adapta a vos.
+                Elegí tu producto y agregalo al carrito.
             </p>
+        </div>
 
-            <a
-                href="#catalogo"
-                class="btn btn-primary">
-                Ver catálogo
+    </div>
+
+
+    <!-- FILTROS -->
+
+    <div class="catalog-tools">
+
+        <div class="search-box">
+
+            <span>🔎</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar productos..."
+            >
+
+        </div>
+
+
+        <select id="categoryFilter">
+
+            <option value="">
+                Todas las categorías
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- PRODUCTOS -->
+
+    <div
+        class="products-grid"
+        id="productsGrid"
+    >
+
+        <div class="loading">
+            Cargando productos...
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================
+     NOSOTROS
+========================================================== -->
+
+<section
+    class="about-section"
+    id="nosotros"
+>
+
+    <div class="about-content">
+
+        <span class="section-kicker">
+            SOBRE NOSOTROS
+        </span>
+
+        <h2>
+            Somos TU TIENDA
+        </h2>
+
+        <p>
+            Trabajamos para ofrecer productos seleccionados,
+            buena atención y una experiencia de compra simple.
+        </p>
+
+        <p>
+            Elegí tu producto, agregalo al carrito y enviá tu
+            pedido directamente por WhatsApp.
+        </p>
+
+
+        <div class="social-links">
+
+            <a href="#" target="_blank">
+                Instagram
+            </a>
+
+            <a href="#" target="_blank">
+                Facebook
+            </a>
+
+            <a href="#" target="_blank">
+                TikTok
             </a>
 
         </div>
@@ -95,732 +224,125 @@
 
 </section>
 
-
-<!-- =====================================================
-     NOSOTROS
-===================================================== -->
-
-<section id="nosotros" class="section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <span class="section-label">
-                NOSOTROS
-            </span>
-
-            <h2>
-                Más que una tienda
-            </h2>
-
-        </div>
-
-        <div class="about-grid">
-
-            <div class="about-text">
-
-                <p>
-                    Somos una tienda dedicada a ofrecer
-                    productos de calidad, combinando
-                    diseño, comodidad y buenos precios.
-                </p>
-
-                <p>
-                    Nuestro objetivo es brindarte una
-                    experiencia de compra sencilla,
-                    rápida y personalizada.
-                </p>
-
-            </div>
-
-            <div class="social-links">
-
-                <a
-                    href="#"
-                    target="_blank"
-                    class="social-link">
-                    Instagram
-                </a>
-
-                <a
-                    href="#"
-                    target="_blank"
-                    class="social-link">
-                    Facebook
-                </a>
-
-                <a
-                    href="#"
-                    target="_blank"
-                    class="social-link">
-                    TikTok
-                </a>
-
-                <a
-                    href="#"
-                    target="_blank"
-                    class="social-link">
-                    WhatsApp
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+</main>
 
 
-<!-- =====================================================
-     CATALOGO
-===================================================== -->
-
-<section id="catalogo" class="section catalog-section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <span class="section-label">
-                COLECCIÓN
-            </span>
-
-            <h2>
-                Nuestro catálogo
-            </h2>
-
-            <p>
-                Elegí tu modelo y seleccioná el talle.
-            </p>
-
-        </div>
-
-
-        <!-- FILTROS -->
-
-        <div class="catalog-controls">
-
-            <input
-                type="search"
-                id="search-product"
-                placeholder="Buscar producto...">
-
-            <select id="category-filter">
-
-                <option value="all">
-                    Todas las categorías
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- PRODUCTOS -->
-
-        <div
-            id="products-container"
-            class="products-grid">
-
-            <div class="loading">
-                Cargando productos...
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
+<!-- ==========================================================
      CARRITO
-===================================================== -->
-
-<section id="carrito" class="section cart-section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <span class="section-label">
-                TU COMPRA
-            </span>
-
-            <h2>
-                Carrito
-            </h2>
-
-        </div>
-
-
-        <div class="cart-layout">
-
-            <div id="cart-container">
-
-                <div class="empty-cart">
-
-                    <div class="empty-cart-icon">
-                        🛒
-                    </div>
-
-                    <h3>
-                        Tu carrito está vacío
-                    </h3>
-
-                    <p>
-                        Agregá productos desde el catálogo.
-                    </p>
-
-                    <a
-                        href="#catalogo"
-                        class="btn btn-primary">
-                        Ver catálogo
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- RESUMEN -->
-
-            <aside class="cart-summary">
-
-                <h3>
-                    Resumen
-                </h3>
-
-                <div class="summary-row">
-
-                    <span>
-                        Productos
-                    </span>
-
-                    <strong id="cart-subtotal">
-                        $0
-                    </strong>
-
-                </div>
-
-                <div class="summary-divider"></div>
-
-                <div class="summary-row total">
-
-                    <span>
-                        Total
-                    </span>
-
-                    <strong id="cart-total">
-                        $0
-                    </strong>
-
-                </div>
-
-                <button
-                    id="checkout-button"
-                    class="btn btn-whatsapp btn-full">
-
-                    Finalizar pedido por WhatsApp
-
-                </button>
-
-                <p class="checkout-info">
-
-                    El pedido será enviado directamente
-                    al vendedor mediante WhatsApp.
-
-                </p>
-
-            </aside>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     MODAL PRODUCTO
-===================================================== -->
+========================================================== -->
 
 <div
-    id="product-modal"
-    class="modal hidden">
+    class="cart-overlay"
+    id="cartOverlay"
+>
 
-    <div class="modal-overlay"></div>
+    <aside class="cart-panel">
 
-    <div class="modal-content">
+        <div class="cart-header">
 
-        <button
-            id="close-product-modal"
-            class="modal-close">
-            ×
-        </button>
+            <h2>
+                Mi carrito
+            </h2>
 
-        <div id="product-modal-body"></div>
+            <button
+                id="closeCartBtn"
+                class="close-button"
+                type="button"
+            >
+                ×
+            </button>
 
-    </div>
+        </div>
+
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+
+        </div>
+
+
+        <div class="cart-footer">
+
+            <div class="cart-total-row">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="cartTotal">
+                    $0
+                </strong>
+
+            </div>
+
+            <button
+                class="btn btn-primary btn-full"
+                id="checkoutBtn"
+                type="button"
+            >
+                Comprar por WhatsApp
+            </button>
+
+            <button
+                class="btn btn-outline btn-full"
+                id="clearCartBtn"
+                type="button"
+            >
+                Vaciar carrito
+            </button>
+
+        </div>
+
+    </aside>
 
 </div>
 
 
-<!-- =====================================================
-     ADMINISTRACIÓN
-===================================================== -->
-
-<section
-    id="admin"
-    class="section admin-section">
-
-    <div class="container">
-
-        <div
-            id="admin-login"
-            class="admin-login">
-
-            <div class="admin-card">
-
-                <span class="section-label">
-                    ADMINISTRACIÓN
-                </span>
-
-                <h2>
-                    Panel administrativo
-                </h2>
-
-                <p>
-                    Ingresá con tu cuenta de administrador.
-                </p>
-
-                <form id="login-form">
-
-                    <div class="form-group">
-
-                        <label for="login-email">
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            id="login-email"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="login-password">
-                            Contraseña
-                        </label>
-
-                        <input
-                            type="password"
-                            id="login-password"
-                            required>
-
-                    </div>
-
-                    <button
-                        type="submit"
-                        class="btn btn-primary btn-full">
-
-                        Ingresar
-
-                    </button>
-
-                    <div
-                        id="login-message"
-                        class="form-message">
-                    </div>
-
-                </form>
-
-            </div>
-
-        </div>
-
-
-        <!-- PANEL -->
-
-        <div
-            id="admin-panel"
-            class="hidden">
-
-            <div class="admin-header">
-
-                <div>
-
-                    <span class="section-label">
-                        ADMINISTRACIÓN
-                    </span>
-
-                    <h2>
-                        Gestión de productos
-                    </h2>
-
-                </div>
-
-                <button
-                    id="logout-button"
-                    class="btn btn-secondary">
-
-                    Cerrar sesión
-
-                </button>
-
-            </div>
-
-
-            <!-- FORMULARIO -->
-
-            <div class="admin-form-card">
-
-                <h3 id="form-title">
-                    Nuevo producto
-                </h3>
-
-                <form id="product-form">
-
-                    <input
-                        type="hidden"
-                        id="product-id">
-
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label>
-                                Nombre
-                            </label>
-
-                            <input
-                                type="text"
-                                id="product-name"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Categoría
-                            </label>
-
-                            <input
-                                type="text"
-                                id="product-category"
-                                value="Calzados">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Precio
-                            </label>
-
-                            <input
-                                type="number"
-                                id="product-price"
-                                min="0"
-                                step="0.01"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Imagen URL
-                            </label>
-
-                            <input
-                                type="url"
-                                id="product-image"
-                                placeholder="https://...">
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Descripción
-                        </label>
-
-                        <textarea
-                            id="product-description"
-                            rows="4">
-                        </textarea>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Talles disponibles
-                        </label>
-
-                        <div
-                            id="sizes-selector"
-                            class="sizes-selector">
-
-                            <label>
-                                <input type="checkbox" value="35">
-                                35
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="36">
-                                36
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="37">
-                                37
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="38">
-                                38
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="39">
-                                39
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="40">
-                                40
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="41">
-                                41
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="42">
-                                42
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="43">
-                                43
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="44">
-                                44
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="45">
-                                45
-                            </label>
-
-                            <label>
-                                <input type="checkbox" value="46">
-                                46
-                            </label>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label class="switch-label">
-
-                            <input
-                                type="checkbox"
-                                id="product-active"
-                                checked>
-
-                            <span>
-                                Producto visible en catálogo
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <div class="form-actions">
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary">
-
-                            Guardar producto
-
-                        </button>
-
-                        <button
-                            type="button"
-                            id="cancel-edit"
-                            class="btn btn-secondary">
-
-                            Cancelar
-
-                        </button>
-
-                    </div>
-
-                    <div
-                        id="product-message"
-                        class="form-message">
-                    </div>
-
-                </form>
-
-            </div>
-
-
-            <!-- TABLA -->
-
-            <div class="admin-products-card">
-
-                <div class="admin-table-header">
-
-                    <h3>
-                        Productos
-                    </h3>
-
-                    <span id="admin-product-count">
-                        0 productos
-                    </span>
-
-                </div>
-
-                <div class="table-wrapper">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    Producto
-                                </th>
-
-                                <th>
-                                    Categoría
-                                </th>
-
-                                <th>
-                                    Precio
-                                </th>
-
-                                <th>
-                                    Estado
-                                </th>
-
-                                <th>
-                                    Acciones
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody
-                            id="admin-products-table">
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
+<!-- ==========================================================
      FOOTER
-===================================================== -->
+========================================================== -->
 
-<footer class="footer">
+<footer class="site-footer">
 
-    <div class="container">
+    <div class="footer-container">
 
-        <div class="footer-content">
+        <div class="footer-brand">
 
-            <div>
+            <img
+                src="img/logo.png"
+                alt="Logo"
+                onerror="this.style.display='none'"
+            >
 
-                <div class="logo">
-                    <span>MI</span> TIENDA
-                </div>
-
-                <p>
-                    Calidad, diseño y atención personalizada.
-                </p>
-
-            </div>
-
-            <div>
-
-                <h4>
-                    Seguinos
-                </h4>
-
-                <div class="footer-social">
-
-                    <a href="#">
-                        Instagram
-                    </a>
-
-                    <a href="#">
-                        Facebook
-                    </a>
-
-                    <a href="#">
-                        TikTok
-                    </a>
-
-                </div>
-
-            </div>
+            <strong>
+                TU TIENDA
+            </strong>
 
         </div>
 
-        <div class="footer-bottom">
+        <p>
+            © 2026 TU TIENDA. Todos los derechos reservados.
+        </p>
 
-            © 2026 Mi Tienda. Todos los derechos reservados.
-
-        </div>
+        <a href="admin.html">
+            Administración
+        </a>
 
     </div>
 
 </footer>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+<!-- ==========================================================
+     TOAST
+========================================================== -->
 
-<script src="app.js"></script>
+<div
+    id="toast"
+    class="toast"
+></div>
 
 </body>
-
 </html>
