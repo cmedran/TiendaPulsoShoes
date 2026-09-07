@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Administración | Mi Tienda</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+
+<body class="admin-body">
+
+
+<!-- LOGIN -->
+
+<section id="loginScreen" class="admin-login">
+
+    <div class="admin-login-box">
+
+        <div class="admin-logo">
+            ADMIN
+        </div>
+
+        <span class="section-label">
+            PANEL DE CONTROL
+        </span>
+
+        <h1>
+            Administración
+        </h1>
+
+        <p>
+            Ingresá con tu cuenta de administrador.
+        </p>
+
+
+        <form id="loginForm">
+
+            <div class="admin-field">
+
+                <label for="loginEmail">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    required
+                    autocomplete="username"
+                >
+
+            </div>
+
+
+            <div class="admin-field">
+
+                <label for="loginPassword">
+                    Contraseña
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    required
+                    autocomplete="current-password"
+                >
+
+            </div>
+
+
+            <div
+                id="loginError"
+                class="admin-message error hidden"
+            ></div>
+
+
+            <button
+                type="submit"
+                class="admin-primary-button"
+            >
+                INGRESAR
+            </button>
+
+        </form>
+
+
+        <a
+            href="index.html"
+            class="back-store"
+        >
+            ← Volver al catálogo
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- PANEL -->
+
+<section
+    id="adminPanel"
+    class="admin-panel hidden"
+>
+
+    <header class="admin-header">
+
+        <div>
+
+            <span class="section-label">
+                PANEL ADMIN
+            </span>
+
+            <h1>
+                Productos
+            </h1>
+
+        </div>
+
+
+        <div class="admin-header-actions">
+
+            <a
+                href="index.html"
+                class="admin-secondary-button"
+            >
+                VER TIENDA
+            </a>
+
+            <button
+                id="logoutBtn"
+                class="admin-secondary-button"
+            >
+                CERRAR SESIÓN
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="admin-content">
+
+
+        <!-- FORMULARIO -->
+
+        <section
+            id="productFormCard"
+            class="admin-card hidden"
+        >
+
+            <div class="admin-card-header">
+
+                <div>
+
+                    <span class="section-label">
+                        PRODUCTO
+                    </span>
+
+                    <h2 id="formTitle">
+                        Nuevo producto
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <form id="productForm">
+
+                <input
+                    type="hidden"
+                    id="productId"
+                >
+
+
+                <div class="admin-form-grid">
+
+                    <div class="admin-field">
+
+                        <label for="productCode">
+                            Código del producto *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="productCode"
+                            required
+                            placeholder="Ej: ZAP-001"
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label for="productName">
+                            Nombre *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="productName"
+                            required
+                            placeholder="Ej: Air Runner"
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label for="productCategory">
+                            Categoría
+                        </label>
+
+                        <input
+                            type="text"
+                            id="productCategory"
+                            placeholder="Ej: Zapatillas"
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label for="productPrice">
+                            Precio *
+                        </label>
+
+                        <input
+                            type="number"
+                            id="productPrice"
+                            min="0"
+                            step="0.01"
+                            required
+                            placeholder="0"
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label for="productOldPrice">
+                            Precio anterior
+                        </label>
+
+                        <input
+                            type="number"
+                            id="productOldPrice"
+                            min="0"
+                            step="0.01"
+                            placeholder="Opcional"
+                        >
+
+                    </div>
+
+
+                    <!-- STOCK -->
+
+                    <div class="admin-field admin-field-full stock-section">
+
+                        <div class="stock-section-header">
+
+                            <div>
+
+                                <label>
+                                    Talles y stock
+                                </label>
+
+                                <small>
+                                    Indicá cuántas unidades hay disponibles de cada talle.
+                                </small>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                id="addSizeBtn"
+                                class="admin-small-button"
+                            >
+                                + AGREGAR TALLE
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="sizesContainer"
+                            class="sizes-container"
+                        ></div>
+
+
+                        <div
+                            id="noSizesMessage"
+                            class="empty-stock-message"
+                        >
+                            Todavía no agregaste ningún talle.
+                        </div>
+
+                    </div>
+
+
+                    <!-- IMAGEN -->
+
+                    <div class="admin-field">
+
+                        <label for="productImage">
+                            Imagen
+                        </label>
+
+                        <input
+                            type="file"
+                            id="productImage"
+                            accept="image/jpeg,image/png,image/webp"
+                        >
+
+                        <small>
+                            JPG, PNG o WEBP — máximo 5 MB.
+                        </small>
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label for="productImageUrl">
+                            URL de imagen
+                        </label>
+
+                        <input
+                            type="url"
+                            id="productImageUrl"
+                            placeholder="Opcional"
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field admin-field-full">
+
+                        <label for="productDescription">
+                            Descripción
+                        </label>
+
+                        <textarea
+                            id="productDescription"
+                            rows="5"
+                            placeholder="Descripción del producto..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="admin-checkboxes">
+
+                        <label class="admin-checkbox">
+
+                            <input
+                                type="checkbox"
+                                id="productActive"
+                                checked
+                            >
+
+                            <span>
+                                Producto activo
+                            </span>
+
+                        </label>
+
+
+                        <label class="admin-checkbox">
+
+                            <input
+                                type="checkbox"
+                                id="productFeatured"
+                            >
+
+                            <span>
+                                Producto destacado
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="productFormMessage"
+                    class="admin-message hidden"
+                ></div>
+
+
+                <div class="admin-form-actions">
+
+                    <button
+                        type="submit"
+                        id="saveProductBtn"
+                        class="admin-primary-button"
+                    >
+                        GUARDAR PRODUCTO
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="cancelEditBtn"
+                        class="admin-secondary-button"
+                    >
+                        CANCELAR
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- LISTADO -->
+
+        <section class="admin-card">
+
+            <div class="admin-card-header">
+
+                <div>
+
+                    <span class="section-label">
+                        CATÁLOGO
+                    </span>
+
+                    <h2>
+                        Productos cargados
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="newProductBtn"
+                    class="admin-primary-button"
+                >
+                    + NUEVO PRODUCTO
+                </button>
+
+            </div>
+
+
+            <div class="admin-search">
+
+                <input
+                    type="search"
+                    id="adminSearch"
+                    placeholder="Buscar producto, código o categoría..."
+                >
+
+            </div>
+
+
+            <div
+                id="adminProductsContainer"
+                class="admin-products-container"
+            >
+
+                <div class="admin-loading">
+                    Cargando productos...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="config.js"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>

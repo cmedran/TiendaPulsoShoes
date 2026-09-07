@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pulso Shoes</title>
+    <meta name="description" content="Catálogo online">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a href="index.html" class="brand">
+            <img id="storeLogo" src="img/Logo.png" alt="Logo">
+            <span id="storeName">PULSOSHOES</span>
+        </a>
+
+        <nav class="main-nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#nosotros">Nosotros</a>
+        </nav>
+
+        <button id="cartButton" class="cart-button">
+            <span class="cart-icon">🛒</span>
+            <span>Carrito</span>
+            <span id="cartCount" class="cart-count">0</span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section id="inicio" class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-label">COLECCIÓN ONLINE</span>
+
+            <h1>
+                Encontrá tu<br>
+                <strong>próximo estilo.</strong>
+            </h1>
+
+            <p id="storeDescription">
+                Calidad, estilo y diseño.
+            </p>
+
+            <a href="#catalogo" class="primary-button">
+                VER CATÁLOGO
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- CATALOGO -->
+
+    <section id="catalogo" class="catalog-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">PRODUCTOS</span>
+                <h2>Catálogo</h2>
+            </div>
+
+            <div class="catalog-tools">
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Buscar producto..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div id="categoryFilters" class="category-filters">
+            <button class="category-button active" data-category="all">
+                Todos
+            </button>
+        </div>
+
+
+        <div id="productsContainer" class="products-grid">
+
+            <div class="loading-container">
+                <div class="loader"></div>
+                <p>Cargando productos...</p>
+            </div>
+
+        </div>
+
+
+        <div id="emptyProducts" class="empty-products hidden">
+
+            <div class="empty-icon">⌕</div>
+
+            <h3>No encontramos productos</h3>
+
+            <p>
+                Probá con otra búsqueda o categoría.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOSOTROS -->
+
+    <section id="nosotros" class="about-section">
+
+        <div class="about-content">
+
+            <span class="section-label">CONOCENOS</span>
+
+            <h2>Nosotros</h2>
+
+            <p>
+                Somos una tienda dedicada a ofrecer productos de calidad,
+                combinando diseño, estilo y una atención cercana.
+            </p>
+
+            <p>
+                Mirá nuestro catálogo, elegí tu producto y realizá tu pedido
+                directamente por WhatsApp.
+            </p>
+
+
+            <div class="social-links">
+
+                <a id="instagramLink"
+                   href="#"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Instagram
+                </a>
+
+                <a id="facebookLink"
+                   href="#"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Facebook
+                </a>
+
+                <a id="tiktokLink"
+                   href="#"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    TikTok
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- CARRITO -->
+
+<div id="cartOverlay" class="cart-overlay hidden"></div>
+
+<aside id="cartPanel" class="cart-panel">
+
+    <div class="cart-header">
+
+        <div>
+            <span class="section-label">TU PEDIDO</span>
+            <h2>Carrito</h2>
+        </div>
+
+        <button id="closeCartButton" class="close-button">
+            ×
+        </button>
+
+    </div>
+
+
+    <div id="cartItems" class="cart-items">
+
+        <div class="empty-cart">
+            <div class="empty-cart-icon">🛒</div>
+            <h3>Tu carrito está vacío</h3>
+            <p>Agregá productos desde el catálogo.</p>
+        </div>
+
+    </div>
+
+
+    <div class="cart-footer">
+
+        <div class="cart-total-row">
+            <span>Total</span>
+            <strong id="cartTotal">$0</strong>
+        </div>
+
+        <button id="checkoutButton" class="whatsapp-button">
+            <span>💬</span>
+            FINALIZAR PEDIDO POR WHATSAPP
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- MODAL PRODUCTO -->
+
+<div id="productModal" class="modal hidden">
+
+    <div class="modal-backdrop"></div>
+
+    <div class="product-modal">
+
+        <button id="closeProductModal" class="modal-close">
+            ×
+        </button>
+
+        <div id="productModalContent"></div>
+
+    </div>
+
+</div>
+
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div>
+            <strong id="footerStoreName">TIENDA ONLINE</strong>
+            <p>© <span id="currentYear"></span> Todos los derechos reservados.</p>
+        </div>
+
+        <a href="admin.html" class="admin-access">
+            ADMIN
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
