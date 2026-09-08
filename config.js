@@ -39,7 +39,7 @@ const STORE_CONFIG = {
         "Calidad, estilo y diseño.",
 
     logo:
-        "img/logo.png",
+        "img/Logo.png",
 
     primaryColor:
         "#CCFC03",
