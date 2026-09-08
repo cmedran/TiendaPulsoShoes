@@ -33,7 +33,7 @@ CONFIGURACIÓN DE LA TIENDA
 
 const STORE_CONFIG = {
 
-    name: "MI TIENDA",
+    name: "PULSO SHOES",
 
     description:
         "Calidad, estilo y diseño.",
